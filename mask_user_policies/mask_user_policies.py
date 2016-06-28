@@ -30,8 +30,7 @@ for each in list_of_files:
 	while True:
 		try:
 			head, tail = os.path.split(each)
-			m = './mask/m_' + tail
-			masked_policy_file = open(m, 'w')
+			masked_policy_file = './mask/m_' + tail
 			print "Reading from " + each
 			print "Writing to " + m
 			with open(each, 'r') as policy_file:
@@ -49,9 +48,8 @@ for each in list_of_files:
 			 			policy_object['policies'][i]['group_name'][x] = "Group"+ str(x)
 
 			#pprint(policy_object, stream=masked_policy_file)
-			with open(m, 'w') as outfile:
+			with open(masked_policy_file, 'w') as outfile:
     				json.dump(policy_object, masked_policy_file, indent=4, separators=(',', ': '))
-    				#json.dump(policy_object, masked_policy_file)
 
 		except ValueError: 
 			print "Error reading the json file: " + each + ". Continuing to the next..."
